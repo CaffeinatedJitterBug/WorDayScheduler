@@ -17,7 +17,7 @@ $(function () {
     const event = e.target;
     if (event.matches('button')) {
       const hour = $(this).attr('id');
-      const textA = $(this).children()[1].val();
+      const textA = $(this).children('.description').val();
       localStorage.setItem(hour, textA);
     }
   })
@@ -30,11 +30,12 @@ $(function () {
   
   for (x=0; x<timeTags.length; x++) {
     const tag = timeTags[x];
-    const matchTag = tag.match(/\d+/);
+    const match = tag.match(/\d+/);
+    const matchTag = parseInt(match[0], 10);
 
     if (matchTag < currentHour) {
       $(timeTags[x]).addClass('past');
-    } else if (matchTag == currentHour) {
+    } else if (matchTag === currentHour) {
       $(timeTags[x]).addClass('present');
     } else if (matchTag > currentHour) {
       $(timeTags[x]).addClass('future');
@@ -51,5 +52,5 @@ $(function () {
   }
 
   // TODO: Add code to display the current date in the header of the page.
-  $('#currentDay').text(dayjs().format('dddd, MMM d'));
+  $('#currentDay').text(dayjs().format('dddd, MMM D'));
 });
