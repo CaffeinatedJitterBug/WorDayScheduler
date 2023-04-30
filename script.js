@@ -47,8 +47,9 @@ $(function () {
   // attribute of each time-block be used to do this?
   
   for (x=0; x<timeTags.length; x++) {
-    const plannerText = localStorage.getItem(timeTags[x]);
-    $(timeTags[x]).val(plannerText);
+    const local = localStorage.key(x);
+    const plannerText = localStorage.getItem(local);
+    $(timeTags[x]).children('.description').val(plannerText);
   }
 
   // TODO: Add code to display the current date in the header of the page.
